@@ -1,17 +1,31 @@
-const key = "TsYlUAHgkH8sphGy8YRxO0Ozqqrsz5FQ";
+const key = "BOGrXZUTmVGHE37ZAey99IIZ9qHWwQkN";
 
+// get city information
 const getCity = async (city) => {
-  const response = await fetch(
-    `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${key}&q=${city}`
-  );
+  const base = "http://dataservice.accuweather.com/locations/v1/cities/search";
+  const query = `?apikey=${key}&q=${city}`;
+
+  const response = await fetch(base + query);
   const data = await response.json();
+
   return data[0];
 };
 
-getCity("manchester")
+// get weather information
+const getWeather = async (id) => {
+  const base = "http://dataservice.accuweather.com/currentconditions/v1/";
+  const query = `${id}?apikey=${key}`;
+
+  const response = await fetch(base + query);
+  const data = await response.json();
+  console.log(data[0]);
+};
+
+getCity("tenali")
+  .then((data) => {
+    getWeather(data.Key);
+  })
   .then((data) => {
     console.log(data);
   })
-  .catch((err) => {
-    console.log("error");
-  });
+  .catch((err) => console.log(err));
