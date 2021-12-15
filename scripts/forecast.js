@@ -1,4 +1,4 @@
-const key = "BOGrXZUTmVGHE37ZAey99IIZ9qHWwQkN";
+const key = "3fWrPb80J9uKC0oSvVS89MkLhHOluWgt";
 
 // get city information
 const getCity = async (city) => {
@@ -20,12 +20,3 @@ const getWeather = async (id) => {
   const data = await response.json();
   console.log(data[0]);
 };
-
-getCity("tenali")
-  .then((data) => {
-    getWeather(data.Key);
-  })
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((err) => console.log(err));
