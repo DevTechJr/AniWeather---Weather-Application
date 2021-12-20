@@ -2,3 +2,7 @@ body {
   letter-spacing: 0.2em;
   font-size: 0.7em;
 }
+
+.d-none {
+  display: none;
+}

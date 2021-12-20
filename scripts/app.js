@@ -14,15 +14,20 @@ const cityData = async (city) => {
 
 const updateUI = (data) => {
   const cityDetail = data.cityDetail;
-  const weather = data.weather;
+  const weather = data.weather[0];
   // Update UI with weather
   details.innerHTML = `
-    <h5 class="my-3 text-secondary">${data}</h5>
-    <div class="my-3 weatherDetails">${data}</div>
+    <h5 class="my-3 text-secondary">${cityDetail.EnglishName}, ${cityDetail.Country.EnglishName}</h5>
+    <div class="my-3 weatherDetails">${weather.WeatherText}</div>
     <div class="display-4 my-4">
-      <span>${data}</span>
-      <span>${data}&deg;C</span>
+      <span>${weather.Temperature.Metric.Value}</span>
+      <span>&deg;C</span>
     </div>`;
+  console.log(weather.Temperature.Metric.Value);
+
+  if (card.classList.contains("d-none")) {
+    card.classList.remove("d-none");
+  }
 };
 
 cityForm.addEventListener("submit", (e) => {
@@ -31,6 +36,6 @@ cityForm.addEventListener("submit", (e) => {
   const city = cityForm.city.value.trim();
   cityForm.reset();
   cityData(city)
-    .then((data) => console.log(data))
+    .then((data) => updateUI(data))
     .catch((err) => console.log(err));
 });
