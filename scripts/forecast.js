@@ -1,4 +1,4 @@
-const key = "dUUWXG5Yar1hnBZKLp9uIfmwAdbwNh4I";
+const key = "AuEl5PETqpFopixGVEGJmv6xd00sRnAq";
 
 // get city information
 const getCity = async (city) => {
